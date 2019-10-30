@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Seanse index{% endblock %}
+
+{% block body %}
+    <h1>Seanse index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Movie_id</th>
+                <th>Time</th>
+                <th>Date</th>
+                <th>Price</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for seanse in seanses %}
+            <tr>
+                <td>{{ seanse.id }}</td>
+                <td>{{ seanse.movieId }}</td>
+                <td>{{ seanse.time ? seanse.time|date('H:i:s') : '' }}</td>
+                <td>{{ seanse.date ? seanse.date|date('Y-m-d') : '' }}</td>
+                <td>{{ seanse.price }}</td>
+                <td>
+                    <a href="{{ path('seanse_show', {'id': seanse.id}) }}">show</a>
+                    <a href="{{ path('seanse_edit', {'id': seanse.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('seanse_new') }}">Create new</a>
+{% endblock %}

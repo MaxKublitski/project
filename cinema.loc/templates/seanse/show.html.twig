@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Seanse{% endblock %}
+
+{% block body %}
+    <h1>Seanse</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ seanse.id }}</td>
+            </tr>
+            <tr>
+                <th>Movie_id</th>
+                <td>{{ seanse.movieId }}</td>
+            </tr>
+            <tr>
+                <th>Time</th>
+                <td>{{ seanse.time ? seanse.time|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ seanse.date ? seanse.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ seanse.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('seanse_index') }}">back to list</a>
+
+    <a href="{{ path('seanse_edit', {'id': seanse.id}) }}">edit</a>
+
+    {{ include('seanse/_delete_form.html.twig') }}
+{% endblock %}

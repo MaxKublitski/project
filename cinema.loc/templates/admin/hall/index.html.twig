@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hall index{% endblock %}
+
+{% block body %}
+    <h1>Hall index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Row</th>
+            <th>Number</th>
+            <th>Cathegory</th>
+            <th>Price</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for hall in halls %}
+            <tr>
+                <td>{{ hall.id }}</td>
+                <td>{{ hall.row }}</td>
+                <td>{{ hall.number }}</td>
+                <td>{{ hall.cathegory }}</td>
+                <td>{{ hall.price }}</td>
+                <td>
+                    <a href="{{ path('admin_hall_show', {'id': hall.id}) }}">show</a>
+                    <a href="{{ path('admin_hall_edit', {'id': hall.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_hall_new') }}">Create new</a>
+{% endblock %}

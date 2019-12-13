@@ -1,20 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello OrdersController!{% endblock %}
+{% block title %}Orders index{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1>Orders index</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Customers Email</th>
+                <th>Seat</th>
+                <th>Seanse Id</th>
+                <th>Seanse Title</th>
+                <th>Seanse Date & Time</th>
+                <th>Total Price</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.user.email }}</td>
+                <td>Row - {{ order.hall.row }}, seat - {{ order.hall.number }}</td>
+                <td>{{ order.seanses.id }}</td>
+                <td>{{ order.seanses.movie.title }}</td>
+                <td>{{ order.seanses.date ? order.seanses.date|date('Y-m-d') : '' }}, {{ order.seanses.time ? order.seanses.time|date('H:m:s') : '' }}</td>
+                <td>{{ order.totalPrice }}</td>
+                <td>
+                    <a href="{{ path('admin_orders_show', {'id': order.id}) }}">show</a>
+                    <a href="{{ path('admin_orders_edit', {'id': order.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/OSPanel/domains/Frameworks/cinema.loc/src/Controller/Admin/OrdersController.php'|file_link(0) }}">src/Controller/Admin/OrdersController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/OSPanel/domains/Frameworks/cinema.loc/templates/admin/orders/index.html.twig'|file_link(0) }}">templates/admin/orders/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <a href="{{ path('admin_orders_new') }}">Create new</a>
 {% endblock %}

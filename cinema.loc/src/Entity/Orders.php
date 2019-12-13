@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -17,64 +19,28 @@ class Orders
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $user_id;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $hall_id;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $seanse_id;
-
-    /**
      * @ORM\Column(type="decimal", precision=10, scale=0)
      */
     private $total_price;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="orders")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Seanse", inversedBy="orders")
+     */
+    private $seanses;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Hall", inversedBy="orders")
+     */
+    private $hall;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getUserId(): ?int
-    {
-        return $this->user_id;
-    }
-
-    public function setUserId(int $user_id): self
-    {
-        $this->user_id = $user_id;
-
-        return $this;
-    }
-
-    public function getHallId(): ?int
-    {
-        return $this->hall_id;
-    }
-
-    public function setHallId(int $hall_id): self
-    {
-        $this->hall_id = $hall_id;
-
-        return $this;
-    }
-
-    public function getSeanseId(): ?int
-    {
-        return $this->seanse_id;
-    }
-
-    public function setSeanseId(int $seanse_id): self
-    {
-        $this->seanse_id = $seanse_id;
-
-        return $this;
     }
 
     public function getTotalPrice(): ?string
@@ -85,6 +51,42 @@ class Orders
     public function setTotalPrice(string $total_price): self
     {
         $this->total_price = $total_price;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getSeanses(): ?Seanse
+    {
+        return $this->seanses;
+    }
+
+    public function setSeanses(?Seanse $seanses): self
+    {
+        $this->seanses = $seanses;
+
+        return $this;
+    }
+
+    public function getHall(): ?Hall
+    {
+        return $this->hall;
+    }
+
+    public function setHall(?Hall $hall): self
+    {
+        $this->hall = $hall;
 
         return $this;
     }

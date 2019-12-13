@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="{{ asset('css/gridSmallHall.css') }}">
+
+<div class="col">
+    <ul class="list-group list-group-horizontal">
+        {% for hall in halls|slice (0, 10) %}
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item">{{ hall.number }}</li>
+            </ul>
+        {% endfor %}
+    </ul>
+    <ul class="list-group list-group-horizontal">
+        {% for hall in halls|slice (10, 10) %}
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item">{{ hall.number }}</li>
+            </ul>
+        {% endfor %}
+    </ul>
+    <ul class="list-group list-group-horizontal">
+        {% for hall in halls|slice (20, 10) %}
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item">{{ hall.number }}</li>
+            </ul>
+        {% endfor %}
+    </ul>
+    <br>
+
+    <ul class="list-group list-group-horizontal">
+        {% for hall in halls|slice (30, 10) %}
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item">{{ hall.number }}</li>
+            </ul>
+        {% endfor %}
+    </ul>
+    <ul class="list-group list-group-horizontal">
+        {% for hall in halls|slice (40, 10) %}
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item">{{ hall.number }}</li>
+            </ul>
+        {% endfor %}
+    </ul>
+    <ul class="list-group list-group-horizontal">
+        {% for hall in halls|slice (50, 10) %}
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item">{{ hall.number }}</li>
+            </ul>
+        {% endfor %}
+    </ul>
+    <br>
+    <ul class="list-group list-group-horizontal">
+        {% for hall in halls|slice (60, 10) %}
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item">{{ hall.number }}</li>
+            </ul>
+        {% endfor %}
+    </ul>
+    <ul class="list-group list-group-horizontal">
+        {% for hall in halls|slice (70, 10) %}
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item">{{ hall.number }}</li>
+            </ul>
+        {% endfor %}
+    </ul>
+    <ul class="list-group list-group-horizontal">
+        {% for hall in halls|slice (80, 10) %}
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item">{{ hall.number }}</li>
+            </ul>
+        {% endfor %}
+    </ul>
+</div>

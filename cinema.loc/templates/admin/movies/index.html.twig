@@ -20,6 +20,8 @@
                 <td>{{ movie.id }}</td>
                 <td>{{ movie.title }}</td>
                 <td>{{ movie.description }}</td>
+                <td>{{ movie.img }}
+                </td>
                 <td>
                     <a href="{{ path('admin_movies_show', {'id': movie.id}) }}">show</a>
                     <a href="{{ path('admin_movies_edit', {'id': movie.id}) }}">edit</a>

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Seanse{% endblock %}
+
+{% block body %}
+    <h1>Create new Seanse</h1>
+
+    {{ include('admin/seanse/_form.html.twig') }}
+
+    <a href="{{ path('admin_seanse_index') }}">back to list</a>
+{% endblock %}

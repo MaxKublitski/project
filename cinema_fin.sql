@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Окт 31 2019 г., 01:15
+-- Время создания: Дек 13 2019 г., 17:33
 -- Версия сервера: 10.3.13-MariaDB
 -- Версия PHP: 7.3.2
 
@@ -34,7 +34,7 @@ CREATE TABLE `hall` (
   `number` int(11) NOT NULL,
   `cathegory` int(11) NOT NULL,
   `price` decimal(10,0) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT;
 
 --
 -- Дамп данных таблицы `hall`
@@ -149,7 +149,21 @@ CREATE TABLE `migration_versions` (
 
 INSERT INTO `migration_versions` (`version`, `executed_at`) VALUES
 ('20191021195810', '2019-10-21 19:58:27'),
-('20191021203511', '2019-10-21 20:36:03');
+('20191021203511', '2019-10-21 20:36:03'),
+('20191124125458', '2019-11-24 12:55:06'),
+('20191124131832', '2019-11-24 16:39:15'),
+('20191124185235', '2019-11-24 18:52:44'),
+('20191124185626', '2019-11-24 18:56:50'),
+('20191124190729', '2019-11-24 19:07:42'),
+('20191124203309', '2019-11-24 20:33:31'),
+('20191124203642', '2019-11-24 20:36:53'),
+('20191124203820', '2019-11-24 20:52:29'),
+('20191124204102', '2019-11-24 20:52:29'),
+('20191124210433', '2019-11-24 21:04:40'),
+('20191124211726', '2019-11-24 21:18:05'),
+('20191127094703', '2019-11-27 09:57:17'),
+('20191211185421', '2019-12-11 18:55:14'),
+('20191213084349', '2019-12-13 08:44:17');
 
 -- --------------------------------------------------------
 
@@ -159,19 +173,21 @@ INSERT INTO `migration_versions` (`version`, `executed_at`) VALUES
 
 CREATE TABLE `movies` (
   `id` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `title` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `movies`
 --
 
-INSERT INTO `movies` (`id`, `title`, `description`) VALUES
-(1, 'Joker', 'In Gotham City, mentally-troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego: \"The Joker\".'),
-(2, 'The Lion King', 'After the murder of his father, a young lion prince flees his kingdom only to learn the true meaning of responsibility and bravery.'),
-(3, 'Gisaengchung', 'All unemployed, Ki-taek\'s family takes peculiar interest in the wealthy and glamorous Parks for their livelihood until they get entangled in an unexpected incident.'),
-(4, 'Terminator: Dark Fate', 'Sarah Connor and a hybrid cyborg human must protect a young girl from a newly modified liquid Terminator from the future.');
+INSERT INTO `movies` (`id`, `title`, `description`, `img`) VALUES
+(1, 'Terminator: Dark Fate', 'An augmented human and Sarah Connor must stop an advanced liquid Terminator, from hunting down a young girl, who\'s fate is critical to the human race.', 'terminator.jpg'),
+(5, 'Joker', 'In Gotham City, mentally-troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego: \"The Joker\".', 'Joker.jpg'),
+(6, 'The Lion King', 'After the murder of his father, a young lion prince flees his kingdom only to learn the true meaning of responsibility and bravery.', 'The_Lion_King.jpg'),
+(7, 'Parasite', 'All unemployed, Ki-taek and his family take peculiar interest in the wealthy and glamorous Parks, as they ingratiate themselves into their lives and get entangled in an unexpected incident.', 'Parasite.jpeg'),
+(8, 'Us', 'A family\'s serene beach vacation turns to chaos when their doppelgängers appear and begin to terrorize them.', 'us-5df17d1c5d1e8.jpeg');
 
 -- --------------------------------------------------------
 
@@ -181,11 +197,19 @@ INSERT INTO `movies` (`id`, `title`, `description`) VALUES
 
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `hall_id` int(11) NOT NULL,
-  `seanse_id` int(11) NOT NULL,
-  `total_price` decimal(10,0) NOT NULL
+  `user_id` int(11) DEFAULT NULL,
+  `seanses_id` int(11) DEFAULT NULL,
+  `total_price` decimal(10,0) NOT NULL,
+  `hall_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `seanses_id`, `total_price`, `hall_id`) VALUES
+(1, 10, 1, '20', 83),
+(2, 12, 1, '20', 84);
 
 -- --------------------------------------------------------
 
@@ -195,11 +219,27 @@ CREATE TABLE `orders` (
 
 CREATE TABLE `seanse` (
   `id` int(11) NOT NULL,
-  `movie_id` int(11) NOT NULL,
   `time` time NOT NULL,
   `date` date NOT NULL,
-  `price` decimal(10,0) NOT NULL
+  `price` decimal(10,0) NOT NULL,
+  `movie_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `seanse`
+--
+
+INSERT INTO `seanse` (`id`, `time`, `date`, `price`, `movie_id`) VALUES
+(1, '18:00:00', '2019-12-13', '10', 1),
+(2, '19:00:00', '2019-12-13', '15', 5),
+(3, '17:00:00', '2019-12-13', '15', 5),
+(4, '14:00:00', '2019-12-14', '10', 5),
+(5, '12:00:00', '2019-12-13', '10', 6),
+(6, '17:00:00', '2019-12-13', '10', 6),
+(7, '19:00:00', '2019-12-14', '10', 6),
+(8, '21:00:00', '2019-12-14', '10', 6),
+(9, '20:00:00', '2019-12-14', '15', 1),
+(10, '01:00:00', '2019-12-14', '10', 7);
 
 -- --------------------------------------------------------
 
@@ -221,7 +261,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `name`, `nickname`) VALUES
-(10, 'admin@admin', '[\"ROLE_ADMIN\"]', '$argon2id$v=19$m=65536,t=4,p=1$UGQ1TEtDZ0FLUE1xb0V1SQ$MXXNWw+UsNmfnaHrfVmtd24txaAj3sRrGerNC7nzMlA', 'admin', 'admin');
+(10, 'admin@admin', '[\"ROLE_ADMIN\"]', '$argon2id$v=19$m=65536,t=4,p=1$UGQ1TEtDZ0FLUE1xb0V1SQ$MXXNWw+UsNmfnaHrfVmtd24txaAj3sRrGerNC7nzMlA', 'admin', 'admin'),
+(12, 'user@mail', '[\"ROLE_USER\"]', '$argon2id$v=19$m=65536,t=4,p=1$dW5LblBMN3RLaEoySnZudQ$1E7IFPcxq0N92oYtmvwabxt5sqjWL3gfQb73TNwBBuQ', 'Максим', 'Coala');
 
 --
 -- Индексы сохранённых таблиц
@@ -249,13 +290,17 @@ ALTER TABLE `movies`
 -- Индексы таблицы `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_E52FFDEEA76ED395` (`user_id`),
+  ADD KEY `IDX_E52FFDEE13269199` (`seanses_id`),
+  ADD KEY `IDX_E52FFDEE52AFCFD6` (`hall_id`);
 
 --
 -- Индексы таблицы `seanse`
 --
 ALTER TABLE `seanse`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_95BFEF5F8F93B6FC` (`movie_id`);
 
 --
 -- Индексы таблицы `user`
@@ -278,25 +323,43 @@ ALTER TABLE `hall`
 -- AUTO_INCREMENT для таблицы `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `seanse`
 --
 ALTER TABLE `seanse`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- Ограничения внешнего ключа сохраненных таблиц
+--
+
+--
+-- Ограничения внешнего ключа таблицы `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `FK_E52FFDEE13269199` FOREIGN KEY (`seanses_id`) REFERENCES `seanse` (`id`),
+  ADD CONSTRAINT `FK_E52FFDEE52AFCFD6` FOREIGN KEY (`hall_id`) REFERENCES `hall` (`id`),
+  ADD CONSTRAINT `FK_E52FFDEEA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `seanse`
+--
+ALTER TABLE `seanse`
+  ADD CONSTRAINT `FK_95BFEF5F8F93B6FC` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

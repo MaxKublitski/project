@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -15,11 +17,6 @@ class Seanse
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $movie_id;
 
     /**
      * @ORM\Column(type="time")
@@ -36,21 +33,24 @@ class Seanse
      */
     private $price;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Movies", inversedBy="seanses")
+     */
+    private $movie;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Orders", mappedBy="seanses")
+     */
+    private $orders;
+
+    public function __construct()
+    {
+        $this->orders = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getMovieId(): ?int
-    {
-        return $this->movie_id;
-    }
-
-    public function setMovieId(int $movie_id): self
-    {
-        $this->movie_id = $movie_id;
-
-        return $this;
     }
 
     public function getTime(): ?\DateTimeInterface
@@ -85,6 +85,49 @@ class Seanse
     public function setPrice(string $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getMovie(): ?Movies
+    {
+        return $this->movie;
+    }
+
+    public function setMovie(?Movies $movie): self
+    {
+        $this->movie = $movie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Orders[]
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Orders $order): self
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders[] = $order;
+            $order->setSeanses($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Orders $order): self
+    {
+        if ($this->orders->contains($order)) {
+            $this->orders->removeElement($order);
+            // set the owning side to null (unless already changed)
+            if ($order->getSeanses() === $this) {
+                $order->setSeanses(null);
+            }
+        }
 
         return $this;
     }

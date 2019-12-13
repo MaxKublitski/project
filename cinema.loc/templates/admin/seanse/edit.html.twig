@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Seanse{% endblock %}
+
+{% block body %}
+    <h1>Edit Seanse</h1>
+
+    {{ include('admin/seanse/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('admin_seanse_index') }}">back to list</a>
+
+    {{ include('admin/seanse/_delete_form.html.twig') }}
+{% endblock %}

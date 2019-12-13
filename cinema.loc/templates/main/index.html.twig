@@ -23,8 +23,8 @@
                     <img class="bd-placeholder-img" width="100%" height="100%" src="{{ asset('img/avengers-infinity-war_1a2d_2880x1800.jpg') }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" ><rect fill="#777" width="100%" height="100%"/></img>
                     <div class="container">
                         <div class="carousel-caption text-left">
-                            <h1>Example headline.</h1>
-                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                            <h1>Premiere!</h1>
+                            <p>Description</p>
                         </div>
                     </div>
                 </div>
@@ -32,8 +32,8 @@
                     <img class="bd-placeholder-img" width="100%" height="100%" src="{{ asset('img/blade-runner-2049_fc2e_2880x1800.jpg') }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" ><rect fill="#777" width="100%" height="100%"/></img>
                     <div class="container">
                         <div class="carousel-caption text-left">
-                            <h1>Another example headline.</h1>
-                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                            <h1>Another premiere!</h1>
+                            <p>Description</p>
                         </div>
                     </div>
                 </div>
@@ -41,8 +41,8 @@
                     <img class="bd-placeholder-img" width="100%" height="100%" src="{{ asset('img/thor-ragnarok_d335_2880x1800.jpg') }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" ><rect fill="#777" width="100%" height="100%"/></img>
                     <div class="container">
                         <div class="carousel-caption text-left">
-                            <h1>One more for good measure.</h1>
-                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                            <h1>One more premiere!</h1>
+                            <p>Description</p>
                         </div>
                     </div>
                 </div>
@@ -64,63 +64,49 @@
             <h2 class="month-premier text-center text-muted">Seanses Today</h2>
             <br>
             <div class="row">
+
+                {% for seanse in todaySeanses %}
                 <div class="col-md-3">
                     <div class="card mb-4 shadow-sm">
-                        <img class="bd-placeholder-img card-img-top" width="100%" height="100%" src="{{ asset('img/joker_dabf394a-d4f2-4b68-90e2-011ed6b54012_poster.jpg') }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect fill="#55595c" width="100%" height="100%"/></img>
+                        <img class="bd-placeholder-img card-img-top" width="100%" height="100%" src="{{ asset('img/') ~ seanse.img }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect fill="#55595c" width="100px" height="100px"/></img>
                         <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <p class="card-text"><b>{{ seanse.title }}</b></p>
+{#                            <p class="card-description">{{ seanse.movie.description }}</p>#}
+{#                            <p class="card-text"><b>{{ seanse.time ? seanse.time|date('H:i:s') : '' }}</b></p>#}
+                            <p class="card-text"><b>{{ seanse.date ? seanse.date|date('Y-m-d') : '' }}</b></p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <a href="{{ path('movies_index') }}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+                                    <a href="{{ path('movies_show', {'id':seanse.id}) }}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-3">
-                    <div class="card mb-4 shadow-sm">
-                        <img class="bd-placeholder-img card-img-top" width="100%" height="100%" src="{{ asset('img/MV5BMjIwMjE1Nzc4NV5BMl5BanBnXkFtZTgwNDg4OTA1NzM@._V1_SY1000_CR0,0,674,1000_AL_.jpg') }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect fill="#55595c" width="100%" height="100%"/></img>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <a href="{{ path('movies_index') }}"><button type="button" class="btn btn-sm btn-outline-secondary" >View</button></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="card mb-4 shadow-sm">
-                        <img class="bd-placeholder-img card-img-top" width="100%" height="100%" src="{{ asset('img/Gisaengchung.jpg') }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect fill="#55595c" width="100%" height="100%"/></img>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <a href="{{ path('movies_index') }}"><button type="button" class="btn btn-sm btn-outline-secondary" >View</button></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="card mb-4 shadow-sm">
-                        <img class="bd-placeholder-img card-img-top" width="100%" height="100%" src="{{ asset('img/terminator.jpg') }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect fill="#55595c" width="100%" height="100%"/></img>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <a href="{{ path('movies_index') }}"><button type="button" class="btn btn-sm btn-outline-secondary" >View</button></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                {% endfor %}
             </div>
+
+            <h2 class="month-premier text-center text-muted">Seanses Tomorrow</h2>
+            <br>
+            <div class="row">
+
+                {% for seanse in tomorrowSeanses %}
+                    <div class="col-md-3">
+                        <div class="card mb-4 shadow-sm">
+                            <img class="bd-placeholder-img card-img-top" width="100%" height="100%" src="{{ asset('img/' ~ seanse.img) }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect fill="#55595c" width="100%" height="100%"/></img>
+                            <div class="card-body">
+                                                            <p class="card-text"><b>{{ seanse.title }}</b></p>
+                                {#                            <p class="card-description">{{ seanse.movie.description }}</p>#}
+                                {#                            <p class="card-text"><b>{{ seanse.time ? seanse.time|date('H:i:s') : '' }}</b></p>#}
+                                <p class="card-text"><b>{{ seanse.date ? seanse.date|date('Y-m-d') : '' }}</b></p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a href="{{ path('movies_show', {'id':seanse.id}) }}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
         </div>
     </div>
 

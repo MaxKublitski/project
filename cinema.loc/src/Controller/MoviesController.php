@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Movies;
 use App\Form\MoviesType;
+use App\Form\SeanseType;
 use App\Repository\MoviesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,28 +26,6 @@ class MoviesController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="movies_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
-    {
-        $movie = new Movies();
-        $form = $this->createForm(MoviesType::class, $movie);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($movie);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('movies_index');
-        }
-
-        return $this->render('movies/new.html.twig', [
-            'movie' => $movie,
-            'form' => $form->createView(),
-        ]);
-    }
 
     /**
      * @Route("/{id}", name="movies_show", methods={"GET"})
@@ -58,37 +37,5 @@ class MoviesController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="movies_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Movies $movie): Response
-    {
-        $form = $this->createForm(MoviesType::class, $movie);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('movies_index');
-        }
-
-        return $this->render('movies/edit.html.twig', [
-            'movie' => $movie,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="movies_delete", methods={"DELETE"})
-     */
-    public function delete(Request $request, Movies $movie): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$movie->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($movie);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('movies_index');
-    }
 }

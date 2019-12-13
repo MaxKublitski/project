@@ -5,8 +5,11 @@ namespace App\Controller\Admin;
 use App\Entity\Movies;
 use App\Form\MoviesType;
 use App\Repository\MoviesRepository;
+use App\Service\FileUploader;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -32,13 +35,20 @@ class MoviesController extends AbstractController
     /**
      * @Route("/new", name="admin_movies_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, FileUploader $fileUploader): Response
     {
         $movie = new Movies();
         $form = $this->createForm(MoviesType::class, $movie);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $image */
+            $image = $form['img']->getData();
+            if ($image){
+                $imageFileName = $fileUploader->upload($image);
+
+                $movie->setImg($imageFileName);
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($movie);
             $entityManager->flush();
@@ -73,7 +83,7 @@ class MoviesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin/movies_index');
+            return $this->redirectToRoute('admin_movies_index');
         }
 
         return $this->render('admin/movies/edit.html.twig', [

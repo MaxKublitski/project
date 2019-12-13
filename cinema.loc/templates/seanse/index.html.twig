@@ -8,25 +8,22 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Movie_id</th>
+                <th>Movie Title</th>
                 <th>Time</th>
                 <th>Date</th>
                 <th>Price</th>
-                <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for seanse in seanses %}
             <tr>
-                <td>{{ seanse.id }}</td>
-                <td>{{ seanse.movieId }}</td>
+                <td>{{ seanse.movie.title }}</td>
                 <td>{{ seanse.time ? seanse.time|date('H:i:s') : '' }}</td>
                 <td>{{ seanse.date ? seanse.date|date('Y-m-d') : '' }}</td>
                 <td>{{ seanse.price }}</td>
                 <td>
-                    <a href="{{ path('seanse_show', {'id': seanse.id}) }}">show</a>
-                    <a href="{{ path('seanse_edit', {'id': seanse.id}) }}">edit</a>
+{#                    <a href="{{ path('seanse_show', {'id': seanse.id}) }}">show</a>#}
+{#                    <a href="{{ path('seanse_edit', {'id': seanse.id}) }}">edit</a>#}
                 </td>
             </tr>
         {% else %}
@@ -37,5 +34,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('seanse_new') }}">Create new</a>
 {% endblock %}

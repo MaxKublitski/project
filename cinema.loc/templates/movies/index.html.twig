@@ -1,26 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Movies index{% endblock %}
+{% block title %}Movies{% endblock %}
 
 {% block body %}
-    <h1>Movies index</h1>
+    <h1>Movies</h1>
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
         </thead>
         <tbody>
         {% for movie in movies %}
             <tr>
-                <td>{{ movie.id }}</td>
-                <td>{{ movie.title }}</td>
+                <td>
+                    <div class="col-md-11">
+                        <div class="card mb-4 shadow-sm">
+                            <img class="bd-placeholder-img card-img-top" width="100%" height="100%" src="{{ asset('img/') ~ movie.img }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Plaeholder: Thumbnail"></img>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <b>{{ movie.title }}</b>
+                    <br>
+                    <br>
+                    <a href="{{ movie.id }}" style="color: #718C00">Details</a>
+                </td>
                 <td>{{ movie.description }}</td>
-
             </tr>
         {% else %}
             <tr>

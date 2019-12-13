@@ -8,26 +8,25 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Customer_id</th>
-                <th>Hall_id</th>
-                <th>Seanse_id</th>
-                <th>Total_price</th>
-                <th>actions</th>
+                <th>User Email</th>
+                <th>Seat</th>
+                <th>Movie Title</th>
+                <th>Seanse Date</th>
+                <th>Total Price</th>
             </tr>
         </thead>
         <tbody>
         {% for order in orders %}
             <tr>
-                <td>{{ order.id }}</td>
-                <td>{{ order.customerId }}</td>
-                <td>{{ order.hallId }}</td>
-                <td>{{ order.seanseId }}</td>
+                <td>{{ order.user.email }}</td>
+                <td>row - {{ order.hall.row }}, seat - {{ order.hall.number }}</td>
+                <td>{{ order.seanses.movie.title }}</td>
+                <td>{{ order.seanses.date ? order.seanses.date|date('Y-m-d') : ''}}, {{ order.seanses.time ? order.seanses.date|date('H:m:s') : '' }}</td>
                 <td>{{ order.totalPrice }}</td>
-                <td>
-                    <a href="{{ path('orders_show', {'id': order.id}) }}">show</a>
-                    <a href="{{ path('orders_edit', {'id': order.id}) }}">edit</a>
-                </td>
+{#                <td>#}
+{#                    <a href="{{ path('orders_show', {'id': order.id}) }}">show</a>#}
+{#                    <a href="{{ path('orders_edit', {'id': order.id}) }}">edit</a>#}
+{#                </td>#}
             </tr>
         {% else %}
             <tr>
@@ -37,5 +36,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('orders_new') }}">Create new</a>
+{#    <a href="{{ path('orders_new') }}">Create new</a>#}
 {% endblock %}

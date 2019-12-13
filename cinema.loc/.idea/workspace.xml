@@ -18,6 +18,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -134,21 +136,24 @@
   </component>
   <component name="ProjectId" id="1SWeU9WSzr8FwRghtFegRuFwtFK" />
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/admin/movies" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/orders" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="Symfony2.SettingsForm" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\OSPanel\domains\Frameworks\cinema.loc\templates\admin\hall" />
-      <recent name="C:\OSPanel\domains\Frameworks\cinema.loc\src\Controller\Admin" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\OSPanel\domains\Frameworks\cinema.loc\templates\admin\movies" />
-      <recent name="C:\OSPanel\domains\Frameworks\cinema.loc\templates\admin\hall" />
+      <recent name="C:\OSPanel\domains\Frameworks\cinema.loc\templates\orders" />
+      <recent name="C:\OSPanel\domains\Frameworks\cinema.loc\templates\movies" />
+      <recent name="C:\OSPanel\domains\Frameworks\cinema.loc\templates\admin\customers" />
+      <recent name="C:\OSPanel\domains\Frameworks\cinema.loc\templates\admin\seanse" />
+      <recent name="C:\OSPanel\domains\Frameworks\cinema.loc\templates\admin\orders" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\OSPanel\domains\Frameworks\cinema.loc\src\Controller\Admin" />
-      <recent name="C:\OSPanel\domains\Frameworks\cinema.loc\src\Controller" />
-      <recent name="C:\OSPanel\domains\Frameworks\cinema.loc\src\Form" />
+      <recent name="C:\OSPanel\domains\Frameworks\cinema.loc\templates\admin\hall" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -180,7 +185,27 @@
       <workItem from="1572190641246" duration="5658000" />
       <workItem from="1572287065920" duration="1355000" />
       <workItem from="1572374986666" duration="1581000" />
-      <workItem from="1572418787921" duration="21206000" />
+      <workItem from="1572418787921" duration="21889000" />
+      <workItem from="1573804483701" duration="4040000" />
+      <workItem from="1573903600013" duration="4370000" />
+      <workItem from="1573986386835" duration="961000" />
+      <workItem from="1574066625446" duration="14285000" />
+      <workItem from="1574156929368" duration="9235000" />
+      <workItem from="1574239340261" duration="7455000" />
+      <workItem from="1574333475562" duration="31697000" />
+      <workItem from="1574419384030" duration="12898000" />
+      <workItem from="1574508078578" duration="4763000" />
+      <workItem from="1574585906730" duration="24197000" />
+      <workItem from="1574672134653" duration="3177000" />
+      <workItem from="1574702333766" duration="2475000" />
+      <workItem from="1574746697751" duration="6663000" />
+      <workItem from="1574842670822" duration="20724000" />
+      <workItem from="1575052279976" duration="2672000" />
+      <workItem from="1575626275912" duration="719000" />
+      <workItem from="1575630938967" duration="6142000" />
+      <workItem from="1576068793813" duration="15185000" />
+      <workItem from="1576171754500" duration="6359000" />
+      <workItem from="1576219603552" duration="15293000" />
     </task>
     <servers />
   </component>
